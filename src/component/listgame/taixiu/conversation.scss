@@ -1,0 +1,40 @@
+.msg-icn {
+  position: absolute;
+  top: 0;
+  right: 17rem;
+  padding: 1rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.8rem;
+  width: 18rem;
+  background: linear-gradient(to right, #67bc51, #006838);
+  border-radius:1rem;
+  text-align: left;
+}
+
+.msg-icn:before{
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 2px;
+  box-sizing: border-box;
+  clip-path: polygon(0% 105%, 0% 0%, 105% 0%, 105% 105%, 43px 105%, 43px 80%, 21px 80%);
+}
+
+.msg-icn:after {
+  content: "";
+  position:absolute;
+  display: block;
+  width: 25px;
+  height: 20px;
+  background-color: #006838;
+  top: calc(100% + 1px);
+  right: 20px;
+  box-sizing: border-box;
+  clip-path: polygon(0 0, 0% 10%, 100% 0%, calc(100% - 2px) 0,calc(100% - 2px));
+  rotate: 90deg;
+}

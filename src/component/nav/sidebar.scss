@@ -1,0 +1,66 @@
+@use "../../variables" as v;
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 15vw;
+  padding: 2vw;
+  background-color: v.$sidebar-color;
+}
+
+.sidebar {
+  .logo {
+    display: flex;
+    align-items: center;
+    img {
+      width: 5vw;
+      border-radius: 6px;
+    }
+    .header-title {
+      font-size: 1vw;
+      font-weight: 600;
+      color: v.$text-color;
+    }
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    input {
+        width: 100%;
+        margin: 10px 0;
+    }
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  li {
+    height: 4vw;
+    font-size: 1.3vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 5px 0;
+    border-radius: 6px;
+    &:hover {
+      background-color: v.$toggle-color;
+      width: 100%;
+    }
+    a {
+      text-decoration: none;
+    }
+    input {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.lottery-container {
+  text-align: center;
+  padding: 20px;
+}
+.lottery-grid {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.station-column {
+  background: #f4f4f4;
+  padding: 10px;
+  border: 1px solid #ccc;
+  max-width: 200px;
+  text-align: center;
+}
+.lottery-number {
+  font-size: 18px;
+  padding: 5px 0;
+}

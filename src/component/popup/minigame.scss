@@ -1,0 +1,97 @@
+.logoPopup-container {
+  position: fixed;
+  width: 520px;
+  height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  li {
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    left: 0px;
+    list-style: none;
+    transform-origin: 270px;
+    transition: all 0.5s ease;
+    transition-delay: calc(0.1s * var(--i));
+    transform: rotate(0deg) translateX(250px);
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .button-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
+  .mng-toggle {
+    // display: none;
+    z-index: 9;
+    cursor: pointer;
+    transition: transform 1s;
+  }
+}
+
+.active {
+  .mng-toggle {
+    transform: rotate(360deg);
+    transition: transform 1s;
+  }
+  li {
+    opacity: 1;
+    transform: rotate(calc(360deg / 6 * var(--i)));
+  }
+}
+
+.game-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7); /* Nền mờ */
+}
+
+.game-wrapper {
+  position: fixed;
+  z-index: 100;
+}
+
+.logoPopup-icon {
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.logoPopup-icon:before {
+  content:'';
+  position: absolute;
+  top: -150px;
+  left: -100px;
+  height: 300px;
+  width: 50px;
+  background:#f3f3f3;
+  box-shadow: 0 0 10px #fff;
+  filter: blur(1px);
+  opacity: 0.9;
+  transform: rotate(30deg);
+  animation: shinning 3s infinite;
+
+}
+
+@keyframes shinning {
+    0% {
+    transform: rotate(30deg) translateX(-60px);
+  }
+  20% {
+    transform: rotate(30deg) translateX(390px);
+  }
+  20.1%,
+  100% {
+    transform: rotate(30deg) translateX(-60px);
+  }
+}

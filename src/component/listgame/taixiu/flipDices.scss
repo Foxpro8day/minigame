@@ -1,0 +1,45 @@
+@keyframes goUP {
+     0% {
+    transform: translateY(-50px) scale(.95);
+  }
+  60% {
+    transform: translateY(-300px) scale(1.8);
+  }
+  100% {
+    transform: translateY(0) scale(.95);
+  }
+}
+
+@keyframes flip-vertical {
+  0% {
+    transform: rotateX(0deg) ;
+  }
+  100% {
+    transform: rotateX(1080deg) ;
+  }
+}
+
+
+.diceTest-container {
+
+  display: inline-block;
+  perspective: 1000px;
+  position: absolute;
+}
+
+.goUpEffect {
+    animation-delay: 5s;
+    animation: goUP 1.5s ease-in-out;
+}
+
+.diceTest {
+  max-width: 50px;
+  max-height: 50px;
+  transform-style: preserve-3d;
+  transform-origin: top left;
+}
+
+.rolling {
+  animation-delay: 5s;
+  animation: flip-vertical 1.5s ease-in-out;
+}

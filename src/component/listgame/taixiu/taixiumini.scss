@@ -1,0 +1,122 @@
+.aura {
+  transform-origin: bottom center;
+  animation: aura-shrink 1s ease-in-out infinite; /* Lặp vô hạn */
+}
+
+@keyframes aura-shrink {
+  0% {
+    transform: scale(1) rotate(0deg); /* Kích thước ban đầu */
+  }
+  25% {
+    transform: scale(1.2) rotate(2deg); /* Phóng to lên 1.5 lần */
+  }
+  100% {
+    transform: scale(1) rotate(0deg); /* Quay về kích thước ban đầu */
+  }
+}
+
+.border-rouned {
+  border: 2px solid red;
+}
+
+.disc-effect-out {
+  animation: moveSemiCircle 2s ease-in-out, holdScale 2s ease 2s forwards;
+}
+
+@keyframes moveSemiCircle {
+  0% {
+    transform: translateX(0) scale(1);
+  }
+  75% {
+    transform: translateX(100px) translateY(50px) scale(.5);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes holdScale {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+.disc-effect-in {
+  animation: moveSemiCircle-reverse 1.5s ease-in-out ;
+}
+
+@keyframes moveSemiCircle-reverse {
+  0% {
+    transform: scale(0); 
+  }
+  25% {
+    transform: translateX(200px) translateY(50px) scale(0.5);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+  }
+}
+
+.diceArea {
+  position: absolute;
+  top: 175px;
+  left: 330px;
+  max-width: 230px;
+  max-height: 230px;
+}
+
+@keyframes roll-dice {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: rotateX(360deg) rotateY(180deg);
+  }
+  50% {
+    transform: rotateX(720deg) rotateY(360deg);
+  }
+  75% {
+    transform: rotateX(1080deg) rotateY(540deg);
+  }
+  100% {
+    transform: rotateX(1440deg) rotateY(720deg);
+  }
+}
+
+.dice-container {
+  position: relative;
+  max-width: 77px;
+  max-height: 77px;
+  perspective: 1000px;
+
+}
+
+.dice {
+  max-width: 77px;
+  max-height: 77px;
+  position: absolute;
+  transform-style: preserve-3d;
+  animation: roll-dice 1s ease-in-out;
+}
+
+.dice-rolling-time {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.appearAura{
+    animation: spin 3s linear infinite;
+}
+
+.begin-replay-img {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
