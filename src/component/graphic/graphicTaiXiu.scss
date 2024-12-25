@@ -1,7 +1,7 @@
-@use "../../../variables" as v;
+@use "../../variables" as v;
 @font-face {
   font-family: "UTM";
-  src: url("../../assets/UTM-Hanzel.ttf") format("truetype");
+  src: url("../assets/UTM-Hanzel.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -80,23 +80,6 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.countdown {
-  position: absolute;
-  top: 350px;
-  left: 345px;
-  font-size: 100px;
-  font-weight: bold;
-  color: white;
-  text-transform: uppercase;
-  text-shadow: -2px -2px 0 gray, /* Đỏ bên trên trái */ 2px 2px 0 grey,
-    /* Xanh bên dưới phải */ 4px 4px 5px rgba(0, 0, 0, 0.5); /* Bóng mờ */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  height: 200px;
-}
-
 .begin-text {
   position: absolute;
   top: 30px;
@@ -117,7 +100,7 @@
 }
 
 .selectedBet {
-    transform: scale(1);
+  transform: scale(1);
 }
 
 .aura-img {
@@ -133,4 +116,36 @@
   font-size: 20px;
   font-weight: bold;
   color: whitesmoke;
+}
+
+.win-img {
+  position: absolute;
+  opacity: 0;
+  top: -400px;
+  left: -160px;
+  scale: 0.4;
+  animation: lose-animation 4s forwards;
+}
+
+.lose-img {
+  opacity: 0;
+  position: absolute;
+  top: -400px;
+  left: -160px;
+  scale: 0.4;
+  animation: lose-animation 4s forwards;
+}
+
+@keyframes lose-animation{
+  0% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0;
+        transform: scale(0) translateY(500px); /* Kích thước ban đầu */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0px); /* Quay về kích thước ban đầu */
+  }
 }

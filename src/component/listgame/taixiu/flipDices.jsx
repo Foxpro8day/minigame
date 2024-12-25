@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./diceLogic.scss";
-import { Sf1, SfRolling1, SfRolling2, SfRolling3, SfRolling4 } from "./graphic";
+import {
+  Sf1,
+  SfRolling1,
+  SfRolling2,
+  SfRolling3,
+  SfRolling4,
+} from "../../graphic/graphicTaiXiu";
 import "./flipDices.scss";
 
 const DiceRoller = ({ x, y }) => {

@@ -119,4 +119,22 @@
   bottom: -30px;
   left: 50%;
   transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.countdown {
+  position: absolute;
+  top: -80px;
+  left: -77px;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  text-shadow: -1px -1px 0 gray, /* Đỏ bên trên trái */ 1px 1px 0 grey,
+    /* Xanh bên dưới phải */ 4px 4px 5px rgba(0, 0, 0, 0.5); /* Bóng mờ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
 }

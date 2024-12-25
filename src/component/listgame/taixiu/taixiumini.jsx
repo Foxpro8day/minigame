@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./taixiumini.scss";
 import {
+  WinImg,
+  LoseImg,
+  TimeCircle,
   Aura,
   AuraButton,
   Deck,
@@ -23,12 +26,11 @@ import {
   Tree,
   Lantern,
   RedEvt,
-} from "./graphic";
+} from "../../graphic/graphicTaiXiu";
 import DiceRoller from "./flipDices";
 import LogicDice from "./diceLogic";
 import beginImg from "../../assets/begin.png";
 import replayImg from "../../assets/replay.png";
-import timeCircle from "../../assets/popupminigame.png";
 
 const TaixiuMini = ({ title, onClose }) => {
   const [selectedBet, setSelectedBet] = useState(null); // "Tài" hoặc "Xỉu"
@@ -38,6 +40,7 @@ const TaixiuMini = ({ title, onClose }) => {
   const [result, setResult] = useState(null); // Kết quả game
   const [history, setHistory] = useState([Sf1, Sf1, Sf1]); // Lịch sử các ván
   const [discClass, setDiscClass] = useState(""); // Quản lý lớp CSS
+  const [point, setPoint] = useState("");
 
   // Bảng ánh xạ số sang component
   const diceMap = {
@@ -55,6 +58,7 @@ const TaixiuMini = ({ title, onClose }) => {
     const totalPoints = numbers.reduce((sum, value) => sum + value, 0);
     const result = getResult(totalPoints); // Tính Tài/Xỉu từ tổng điểm
     setResult(result); // Lưu kết quả "Tài" hoặc "Xỉu" vào state
+    setPoint(totalPoints);
     console.log(
       "Xúc xắc:",
       numbers,
@@ -214,6 +218,13 @@ const TaixiuMini = ({ title, onClose }) => {
           <BetButton right />
         </div>
       )}
+
+      <TimeCircle text={point} scale="1" bottom="120px" left="300px" />
+
+      {countdown !== 11 && (
+        <TimeCircle text={countdown} scale="2" bottom="40px" left="425px" />
+      )}
+
       {gameStage === "waiting" && (
         <div className="begin-replay-img" onClick={startGame}>
           <img src={beginImg} />
@@ -246,24 +257,22 @@ const TaixiuMini = ({ title, onClose }) => {
         <></>
       )}
       <Disc className={discClass} />
-      {countdown !== 11 && (
-        <div className="countdown">
-          <div className="number">{countdown}</div>
-        </div>
-      )}
+
       {gameStage === "betting" && countdown >= 3 && (
         <GameNotication
-          text="Bắt đầu đặt cược"
+          text="BẮT ĐẦU ĐẶT CƯỢC"
           style={{ top: "100px", left: "300px", scale: "1.8" }}
         />
       )}
 
       {gameStage === "betting" && countdown < 3 && (
         <GameNotication
-          text="Khóa cược"
+          text="KHÓA CƯỢC"
           style={{ top: "100px", left: "300px", scale: "1.8" }}
         />
       )}
+      {gameStage === "finish" &&
+        (result === selectedBet ? <WinImg /> : <LoseImg />)}
 
       <IIcon />
       <XIcon onClick={onClose} />

@@ -29,8 +29,7 @@
     cursor: pointer;
   }
   .mng-toggle {
-    // display: none;
-    z-index: 9;
+    z-index: 1000;
     cursor: pointer;
     transition: transform 1s;
   }
@@ -68,23 +67,22 @@
   border-radius: 50%;
 }
 .logoPopup-icon:before {
-  content:'';
+  content: "";
   position: absolute;
   top: -150px;
   left: -100px;
   height: 300px;
   width: 50px;
-  background:#f3f3f3;
+  background: #f3f3f3;
   box-shadow: 0 0 10px #fff;
   filter: blur(1px);
   opacity: 0.9;
   transform: rotate(30deg);
   animation: shinning 3s infinite;
-
 }
 
 @keyframes shinning {
-    0% {
+  0% {
     transform: rotate(30deg) translateX(-60px);
   }
   20% {
@@ -93,5 +91,17 @@
   20.1%,
   100% {
     transform: rotate(30deg) translateX(-60px);
+  }
+}
+
+@media (max-width: 768px) {
+  .logoPopup-container {
+    border: 1px solid red;
+    width: 60vw;
+    height: 50vw;
+    li {
+      transform-origin: 30vw;
+      left: 0;
+    }
   }
 }

@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
-import "./graphic.scss";
-import taixiuImg from "../../assets/taixiu8day.png";
-import diceImg from "../../assets/xucxac.png";
-import AuraImg from "../../assets/aura.png";
-import auraButton from "../../assets/aurabutton.png"
+import "./graphicTaiXiu.scss";
+import taixiuImg from "../assets/taixiu8day.png";
+import diceImg from "../assets/xucxac.png";
+import AuraImg from "../assets/aura.png";
+import auraButton from "../assets/aurabutton.png";
+import timeCircleImg from "../assets/popupminigame.png";
+import winImg from "../assets/win.png";
+import loseImg from "../assets/lose.png";
 
-//// Main
+//// Main tài xỉu
 // Bàn chơi
 const Deck = () => {
   const taixiuDeck = { x: 0, y: 0, width: 890, height: 540 };
@@ -137,7 +139,7 @@ const TaiIcon = (props) => {
     ></div>
   );
 };
-// Aura
+// Aura  tài xỉu
 const Aura = (props) => {
   const auraIcon = { x: 0, y: 0, width: 600, height: 590 };
   const positionStyle = props.left
@@ -145,7 +147,7 @@ const Aura = (props) => {
     : props.right
     ? { left: "410px" }
     : {};
-  
+
   return (
     <div
       className="aura-img"
@@ -162,13 +164,14 @@ const Aura = (props) => {
     ></div>
   );
 };
+// Aura button cược
 const AuraButton = (props) => {
   const auraIcon = { x: 300, y: 400, width: 260, height: 260 };
   const positionStyle = props.left
-    ? { left: "50px"}
+    ? { left: "50px" }
     : props.right
-    ? { right: "40px"}
-      : {};
+    ? { right: "40px" }
+    : {};
 
   return (
     <div
@@ -280,7 +283,44 @@ const GameNotication = (props) => {
     </>
   );
 };
+// Khung thời gian
+const TimeCircle = (props) => {
+  const timeCircle = { x: 400, y: 430, width: 45, height: 45 };
 
+  return (
+    <>
+      <div
+        className="game-note"
+        style={{
+          position: "absolute",
+          bottom: props.bottom,
+          left: props.left,
+          backgroundImage: `url(${timeCircleImg})`,
+          backgroundPosition: `-${timeCircle.x}px -${timeCircle.y}px`,
+          width: `${timeCircle.width}px`,
+          height: `${timeCircle.height}px`,
+          scale: props.scale,
+        }}
+      >
+        <div className="countdown">{props.text}</div>
+      </div>
+    </>
+  );
+};
+const LoseImg = () => {
+  return (
+    <div className="lose-img">
+      <img src={loseImg} />
+    </div>
+  );
+};
+const WinImg = () => {
+  return (
+    <div className="win-img">
+      <img src={winImg} />
+    </div>
+  );
+};
 
 //// Dices
 const Sf1 = ({ style }) => {
@@ -545,6 +585,9 @@ const RedEvt = () => {
 };
 
 export {
+  WinImg,
+  LoseImg,
+  TimeCircle,
   Aura,
   AuraButton,
   Deck,
