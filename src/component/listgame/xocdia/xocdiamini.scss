@@ -1,0 +1,125 @@
+.xd-countdown {
+  position: absolute;
+  top: 168px;
+  right: 212px;
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+
+.bowl-disc {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  left: 0;
+  animation: bowl-disc 4s;
+}
+
+@keyframes bowl-disc {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(-124px) translateY(-24px) rotate(-20deg);
+  }
+  53% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  56% {
+    transform: translateX(-124px) translateY(-24px) rotate(-20deg);
+  }
+  65% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  70% {
+    transform: translateX(-124px) translateY(-24px) rotate(-20deg);
+  }
+  75% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  90% {
+    transform: translateX(-124px) translateY(-24px) rotate(-20deg);
+  }
+  95% {
+    transform: translateX(-24px) translateY(-24px) rotate(-3deg);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+}
+
+.chipArea {
+  position: absolute;
+  top: 255px;
+  left: 480px;
+  width: 85px;
+  height: 50px;
+//   border: 1px solid red;
+}
+
+.selected {
+  border: 3px solid #ffd700; // Hiệu ứng viền khi được chọn
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none; // Không cho phép click
+}
+
+.chanIcon,
+.leIcon {
+  transition: transform 0.3s ease-in-out;
+}
+.chanIcon:hover,
+.leIcon:hover {
+  transform: scale(1.2);
+}
+
+.xd-4-red,
+.xd-3-red,
+.xd-3-white,
+.xd-4-white {
+  position: absolute;
+  bottom: 10px;
+  width: 150px;
+  height: 150px;
+}
+
+.xd-4-red {
+  left: 128px;
+}
+
+.xd-3-red {
+  left: 348px;
+}
+
+.xd-3-white {
+  left: 568px;
+}
+
+.xd-4-white {
+  right: -53px;
+}
+
+.aura-blink {
+    animation: aura-blink-effect .5s infinite;
+}
+
+@keyframes aura-blink-effect {
+    0% {
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.1;
+    }
+}

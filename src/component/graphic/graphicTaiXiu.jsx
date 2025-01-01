@@ -9,7 +9,7 @@ import loseImg from "../assets/lose.png";
 
 //// Main tài xỉu
 // Bàn chơi
-const Deck = () => {
+const Deck = (props) => {
   const taixiuDeck = { x: 0, y: 0, width: 890, height: 540 };
 
   return (
@@ -20,6 +20,7 @@ const Deck = () => {
         backgroundPosition: `-${taixiuDeck.x}px -${taixiuDeck.y}px`,
         width: `${taixiuDeck.width}px`,
         height: `${taixiuDeck.height}px`,
+        scale: props.scale,
       }}
     ></div>
   );
@@ -91,7 +92,7 @@ const Disc = ({ className }) => {
       className={`disc ${className}`}
       style={{
         position: "absolute",
-        top: "140px",
+        top: "143px",
         right: "292px",
         backgroundImage: `url(${taixiuImg})`,
         backgroundPosition: `-${discIcon.x}px -${discIcon.y}px`,
@@ -214,16 +215,16 @@ const BetButton = (props) => {
   const positionStyle = props.left
     ? { left: "105px" }
     : props.right
-    ? { right: "105px" }
+    ? { right: "100px" }
     : {};
 
   return (
     <div
-      className={props.className}
+      className={`betIcon ${props.className}`}
       onClick={props.onClick}
       style={{
         position: "absolute",
-        bottom: "125px",
+        bottom: "127px",
         ...positionStyle,
         backgroundImage: `url(${taixiuImg})`,
         backgroundPosition: `-${betArea.x}px -${betArea.y}px`,
@@ -309,14 +310,14 @@ const TimeCircle = (props) => {
 };
 const LoseImg = () => {
   return (
-    <div className="lose-img">
+    <div className="win">
       <img src={loseImg} />
     </div>
   );
 };
 const WinImg = () => {
   return (
-    <div className="win-img">
+    <div className="win">
       <img src={winImg} />
     </div>
   );

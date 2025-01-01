@@ -18,3 +18,43 @@
   font-size: 18px;
   padding: 5px 0;
 }
+
+.number-grid {
+  display: grid;
+  grid-template-rows: 1fr;  /* 1 cột */
+  grid-template-columns: repeat(10, auto);  /* 10 dòng */
+  justify-content: center;
+  align-items: center;
+  gap: 10px;  /* Khoảng cách giữa các dòng */
+  padding: 10px;
+}
+
+.grid-item {
+  font-size: 18px;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.grid-item:hover {
+  background-color: #f0f0f0;
+}
+
+.grid-item.selected {
+  background-color: #4caf50;
+  color: white;
+  border-color: #4caf50;
+}
+
+.number-header {
+  display: grid;
+  grid-template-rows: 1fr;  /* 1 cột */
+  grid-template-columns: repeat(10, auto);  /* 10 dòng */
+  gap: 10px;  /* Khoảng cách giữa các dòng */
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+}

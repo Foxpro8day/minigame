@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, use } from "react";
 import "./taixiumini.scss";
 import {
   WinImg,
@@ -31,6 +31,7 @@ import DiceRoller from "./flipDices";
 import LogicDice from "./diceLogic";
 import beginImg from "../../assets/begin.png";
 import replayImg from "../../assets/replay.png";
+import { init } from "ityped";
 
 const TaixiuMini = ({ title, onClose }) => {
   const [selectedBet, setSelectedBet] = useState(null); // "Tài" hoặc "Xỉu"
@@ -171,7 +172,8 @@ const TaixiuMini = ({ title, onClose }) => {
   };
 
   return (
-    <div className="modal-taixiu">
+    <div className="modal-game">
+      {/* <span ref={textRef}></span> */}
       <Deck />
       <DeckTitle />
       <Tree />
@@ -188,26 +190,35 @@ const TaixiuMini = ({ title, onClose }) => {
       gameStage === "rolling" ||
       gameStage === "finish" ? (
         <div className="betting-options">
-          <AuraButton
+          {/* <AuraButton
             right
             className={`${selectedBet === "Tài" ? "show" : "hidden"}`}
           />
           <AuraButton
             left
             className={`${selectedBet === "Xỉu" ? "show" : "hidden"}`}
-          />
+          /> */}
+
           <BetButton
             left
-            className={`betIcon-xiu ${
-              selectedBet === "Tài" ? "dimed" : "selectedBet"
+            className={` ${
+              selectedBet === null
+                ? ""
+                : selectedBet === "Tài"
+                ? "dimed"
+                : "selectedBet"
             }`}
             onClick={() => handleBet("Xỉu")}
           />
 
           <BetButton
             right
-            className={`betIcon-tai ${
-              selectedBet === "Xỉu" ? "dimed" : "selectedBet"
+            className={` ${
+              selectedBet === null
+                ? ""
+                : selectedBet === "Xỉu"
+                ? "dimed"
+                : "selectedBet"
             }`}
             onClick={() => handleBet("Tài")}
           />
@@ -225,18 +236,6 @@ const TaixiuMini = ({ title, onClose }) => {
         <TimeCircle text={countdown} scale="2" bottom="40px" left="425px" />
       )}
 
-      {gameStage === "waiting" && (
-        <div className="begin-replay-img" onClick={startGame}>
-          <img src={beginImg} />
-        </div>
-        // <BeginButton onClick={startGame} text="BẮT ĐẦU" />
-      )}
-      {gameStage === "finish" && (
-        <div className="begin-replay-img" onClick={handlePlayAgain}>
-          <img src={replayImg} />
-        </div>
-        // <BeginButton onClick={handlePlayAgain} text="CHƠI LẠI" />
-      )}
       {gameStage === "rolling" && countdown <= 10 && countdown >= 6 && (
         <div className="diceArea">
           <LogicDice dice1={history[0]} dice2={history[1]} dice3={history[2]} />
@@ -257,23 +256,31 @@ const TaixiuMini = ({ title, onClose }) => {
         <></>
       )}
       <Disc className={discClass} />
-
       {gameStage === "betting" && countdown >= 3 && (
         <GameNotication
-          text="BẮT ĐẦU ĐẶT CƯỢC"
-          style={{ top: "100px", left: "300px", scale: "1.8" }}
+          text="Bắt đầu đặt cược!!!"
+          style={{ top: "-90px", left: "500px", scale: "1.3" }}
         />
       )}
 
       {gameStage === "betting" && countdown < 3 && (
         <GameNotication
-          text="KHÓA CƯỢC"
-          style={{ top: "100px", left: "300px", scale: "1.8" }}
+          text="KHÓA CƯỢC!!!"
+          style={{ top: "-90px", left: "500px", scale: "1.3" }}
         />
       )}
       {gameStage === "finish" &&
         (result === selectedBet ? <WinImg /> : <LoseImg />)}
-
+      {gameStage === "waiting" && (
+        <div className="begin-replay-img" onClick={startGame}>
+          <img src={beginImg} />
+        </div>
+      )}
+      {gameStage === "finish" && (
+        <div className="begin-replay-img" onClick={handlePlayAgain}>
+          <img src={replayImg} />
+        </div>
+      )}
       <IIcon />
       <XIcon onClick={onClose} />
     </div>

@@ -1,6 +1,7 @@
 import "./minigame.scss";
 import { useState, useRef, useEffect } from "react";
 import TaixiuMini from "../listgame/taixiu/taixiumini";
+import XocdiaMini from "../listgame/xocdia/xocdiamini";
 import useIsMobile from "../utils/useIsMobile";
 import {
   LogoPopup,
@@ -9,6 +10,7 @@ import {
   BaucuaLogo,
   ComingSoonLogo,
 } from "../graphic/popupGraphic";
+import xocdiaImg from "../assets/8day-Minigame-Xocdia-Main.png";
 
 const Minigame = () => {
   const isMobile = useIsMobile();
@@ -26,6 +28,7 @@ const Minigame = () => {
 
   const [isActive, setIsActive] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState("");
   const [activeSource, setActiveSource] = useState("");
 
   const calculateCenterPosition = (width, height) => {
@@ -78,11 +81,10 @@ const Minigame = () => {
   const handleMainMenu = () => {
     setIsActive(!isActive);
   };
-  const handleGameControl = () => {
-    setIsModalOpen(true);
-  };
+
   const closeModal = () => {
     setIsModalOpen(false);
+    setModalType("");
   };
 
   // tính năng chạm kéo thả
@@ -134,11 +136,24 @@ const Minigame = () => {
     document.addEventListener("touchend", handleTouchEnd);
   };
 
+  let touchMoveHandler;
   const disableScroll = () => {
-    document.body.style.overflow = "hidden";
+    touchMoveHandler = (e) => {
+      e.preventDefault();
+    };
+    document.addEventListener("touchmove", touchMoveHandler, {
+      passive: false,
+    });
   };
   const enableScroll = () => {
-    document.body.style.overflow = "";
+    if (touchMoveHandler) {
+      document.removeEventListener("touchmove", touchMoveHandler);
+    }
+  };
+
+  const openModalGame = (type) => {
+    setModalType(type);
+    setIsModalOpen(true);
   };
 
   // Xử lý khi chạm (tap)
@@ -146,148 +161,78 @@ const Minigame = () => {
     setActiveSource("popup");
   };
 
-  const handleTapTaiXiu = () => {
-    setIsModalOpen(true);
-  };
-
   return (
     <>
-      {isMobile ? (
-        <>
-          <div
-            className={`logoPopup-container ${
-              isModalOpen
-                ? "hidden"
-                : isActive && activeSource === "popup"
-                ? "active"
-                : ""
-            }`}
-            style={{
-              positionPopup: "absolute",
-              left: `${positionPopup.x}px`,
-              top: `${positionPopup.y}px`,
-            }}
-            onClick={() => setActiveSource("popup")}
-          >
-            <LogoPopup
-              scale="0.2"
-              onMouseDown={(e) =>
-                handleMouseDown(e, setPositionPopup, positionPopup)
-              }
-              onTouchStart={(e) =>
-                handleTouchStart(e, setPositionPopup, positionPopup)
-              }
-            />
-            <div className="button-close">
-              <i className="fa-solid fa-x"></i>
-            </div>
-            <li style={{ "--i": 0 }}>
-              <TaixiuLogo
-                scale="0.3"
-                onClick={handleGameControl}
-                onTouchEnd={(e) => handleTapTaiXiu()}
-              />
-            </li>
-            <li style={{ "--i": 1 }}>
-              <XocdiaLogo scale="0.3" />
-            </li>
-            <li style={{ "--i": 2 }}>
-              <BaucuaLogo scale="0.3" />
-            </li>
-            <li style={{ "--i": 3 }}>
-              <ComingSoonLogo scale="0.3" transform="rotate(180deg)" />
-            </li>
-            <li style={{ "--i": 4 }}>
-              <ComingSoonLogo scale="0.3" transform="rotate(120deg)" />
-            </li>
-            <li style={{ "--i": 5 }}>
-              <ComingSoonLogo scale="0.3" transform="rotate(60deg)" />
-            </li>
-          </div>
+      <div
+        className={`logoPopup-container ${
+          isModalOpen
+            ? "hidden"
+            : isActive && activeSource === "popup"
+            ? "active"
+            : ""
+        }`}
+        style={{
+          positionPopup: "absolute",
+          left: `${positionPopup.x}px`,
+          top: `${positionPopup.y}px`,
+          scale: isMobile ? ".3" : "1",
+        }}
+        onClick={() => setActiveSource("popup")}
+      >
+        <LogoPopup
+          onTouchStart={(e) =>
+            handleTouchStart(e, setPositionPopup, positionPopup)
+          }
+          onMouseDown={(e) =>
+            handleMouseDown(e, setPositionPopup, positionPopup)
+          }
+        />
+        <li style={{ "--i": 0 }} onClick={() => openModalGame("tx")}>
+          <TaixiuLogo />
+        </li>
+        <li style={{ "--i": 1 }} onClick={() => openModalGame("xd")}>
+          <XocdiaLogo />
+        </li>
+        <li style={{ "--i": 2 }}>
+          <BaucuaLogo />
+        </li>
+        <li style={{ "--i": 3 }}>
+          <ComingSoonLogo transform="rotate(180deg)" />
+        </li>
+        <li style={{ "--i": 4 }}>
+          <ComingSoonLogo transform="rotate(120deg)" />
+        </li>
+        <li style={{ "--i": 5 }}>
+          <ComingSoonLogo transform="rotate(60deg)" />
+        </li>
+      </div>
+      {/* <img src={xocdiaImg} alt="xocdia" className="xocdia-img" /> */}
 
-          {isModalOpen && (
-            <div className="game-container">
-              <div
-                className="game-wrapper"
-                style={{
-                  positionPopup: "fixed",
-                  left: positionTaixiu.x,
-                  top: positionTaixiu.y,
-                }}
-                onMouseDown={(e) =>
-                  handleMouseDown(e, setPositionTaixiu, positionTaixiu)
-                }
-                onClick={() => setActiveSource("modal")}
-              >
-                <TaixiuMini title="" onClose={closeModal} />
-              </div>
-            </div>
-          )}
-        </>
-      ) : (
-        <>
+      {isModalOpen && (
+        <div className="game-container">
           <div
-            className={`logoPopup-container ${
-              isModalOpen
-                ? "hidden"
-                : isActive && activeSource === "popup"
-                ? "active"
-                : ""
-            }`}
+            className="game-wrapper"
             style={{
-              positionPopup: "absolute",
-              left: `${positionPopup.x}px`,
-              top: `${positionPopup.y}px`,
+              positionPopup: "fixed",
+              left: positionTaixiu.x,
+              top: positionTaixiu.y,
+              scale: isMobile ? ".35" : "1",
             }}
-            onClick={() => setActiveSource("popup")}
+            onMouseDown={(e) =>
+              handleMouseDown(e, setPositionTaixiu, positionTaixiu)
+            }
+            onTouchStart={(e) =>
+              handleTouchStart(e, setPositionTaixiu, positionTaixiu)
+            }
+            onClick={() => setActiveSource("modal")}
           >
-            <LogoPopup
-              onMouseDown={(e) =>
-                handleMouseDown(e, setPositionPopup, positionPopup)
-              }
-            />
-            <div className="button-close">
-              <i className="fa-solid fa-x"></i>
-            </div>
-            <li style={{ "--i": 0 }}>
-              <TaixiuLogo onClick={handleGameControl} />
-            </li>
-            <li style={{ "--i": 1 }}>
-              <XocdiaLogo />
-            </li>
-            <li style={{ "--i": 2 }}>
-              <BaucuaLogo />
-            </li>
-            <li style={{ "--i": 3 }}>
-              <ComingSoonLogo transform="rotate(180deg)" />
-            </li>
-            <li style={{ "--i": 4 }}>
-              <ComingSoonLogo transform="rotate(120deg)" />
-            </li>
-            <li style={{ "--i": 5 }}>
-              <ComingSoonLogo transform="rotate(60deg)" />
-            </li>
+            {modalType === "tx" ? (
+              <TaixiuMini title="" onClose={closeModal} />
+            ) : modalType === "xd" ? (
+              <XocdiaMini title="" onClose={closeModal} />
+            ) : null}
           </div>
-
-          {isModalOpen && (
-            <div className="game-container">
-              <div
-                className="game-wrapper"
-                style={{
-                  positionPopup: "fixed",
-                  left: positionTaixiu.x,
-                  top: positionTaixiu.y,
-                }}
-                onMouseDown={(e) =>
-                  handleMouseDown(e, setPositionTaixiu, positionTaixiu)
-                }
-                onClick={() => setActiveSource("modal")}
-              >
-                <TaixiuMini title="" onClose={closeModal} />
-              </div>
-            </div>
-          )}
-        </>
+        </div>
       )}
     </>
   );

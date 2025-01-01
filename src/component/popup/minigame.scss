@@ -11,12 +11,12 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    left: 0px;
     list-style: none;
+    left: 0px;
     transform-origin: 270px;
+    transform: rotate(0deg) translateX(250px);
     transition: all 0.5s ease;
     transition-delay: calc(0.1s * var(--i));
-    transform: rotate(0deg) translateX(250px);
     opacity: 0;
     cursor: pointer;
     z-index: 10;
@@ -91,17 +91,5 @@
   20.1%,
   100% {
     transform: rotate(30deg) translateX(-60px);
-  }
-}
-
-@media (max-width: 768px) {
-  .logoPopup-container {
-    border: 1px solid red;
-    width: 60vw;
-    height: 50vw;
-    li {
-      transform-origin: 30vw;
-      left: 0;
-    }
   }
 }

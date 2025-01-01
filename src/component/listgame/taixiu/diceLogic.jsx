@@ -43,6 +43,7 @@ const LogicDice = ({ dice1, dice2, dice3 }) => {
 
     if (attempts >= maxAttempts) {
       console.warn("Không thể tạo đủ vị trí ngẫu nhiên mà không bị chồng lấn.");
+      generatePositions(squareSize, containerSize, 3);
     }
 
     return positions;

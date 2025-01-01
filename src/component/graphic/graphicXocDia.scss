@@ -1,0 +1,150 @@
+.xd-lantern {
+  transform-origin: 120px 10px;
+  animation: swing-lantern 10s infinite;
+}
+
+@keyframes swing-lantern {
+  0% {
+    transform: rotate(-30deg);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-15deg);
+  }
+  75% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-30deg);
+  }
+}
+
+.xd-canhdao {
+  animation: canhdao 6s infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes canhdao {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  83% {
+    transform: rotate(3deg);
+  }
+  92% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.xd-win {
+  position: absolute;
+  top: -300px;
+  left: -90px;
+  animation: win-effect 2s forwards;
+  animation-delay: 2s;
+  opacity: 0;
+}
+@keyframes win-effect {
+  0% {
+    transform: (-300px) scale(0.4);
+    opacity: 0;
+  }
+  80% {
+    transform:  translateY(0) scale(0.4);
+    opacity: 1;
+  }
+  100% {
+    transform: (-300px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+.xd-begin {
+  position: absolute;
+  top: 530px;
+  left: 335px;
+  transform: scale(0.8);
+}
+
+.xd-bowl-mo {
+  animation: bowl 4s forwards;
+}
+
+@keyframes bowl {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  10% {
+    transform: translateX(-24px) translateY(-24px) rotate(-10deg);
+  }
+  30% {
+    transform: translateX(-24px) translateY(-24px) rotate(-20deg);
+  }
+  50% {
+    transform: translateX(-124px) translateY(-124px) rotate(-40deg);
+  }
+  70% {
+    transform: translateX(-124px) translateY(-124px) rotate(-40deg);
+  }
+  100% {
+    transform: translateX(-124px) translateY(-124px) rotate(-40deg);
+  }
+}
+
+.xd-bowl-dong {
+  animation: xd-bowl-dong-effect .5s forwards;
+}
+
+@keyframes xd-bowl-dong-effect {
+  0% {
+    transform: translateX(-124px) translateY(-124px) rotate(-40deg);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+}
+
+.xd-begin {
+  cursor: pointer;
+}
+
+.xd-chat {
+  img {
+    position: absolute;
+    top: 70px;
+    left: 80px;
+    transform: rotateY(180deg);
+  }
+  .xd-text {
+    width: 240px;
+    position: absolute;
+    top: 85px;
+    left: 100px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: blink 1s infinite;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
